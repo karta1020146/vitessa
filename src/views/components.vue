@@ -15,7 +15,7 @@ const slideData = ref([
     { id: 3, url: 'https://picsum.photos/500/500?random=3' },
     { id: 4, url: 'https://picsum.photos/500/500?random=4' },
     { id: 5, url: 'https://picsum.photos/500/500?random=5' },
-    { id: 6, url: 'https://picsum.photos/500/500?random=5' },
+    { id: 6, url: 'https://picsum.photos/500/500?random=6' },
 ])
 
 const titleValue =computed(() =>{
@@ -48,7 +48,7 @@ const compPre =()=>{
       <h1>{{ titleValue }}</h1>
       <transition-group :name="nameShow">
           <div class="a" v-if="toogleValue">
-            <slideComp :data="slideData" class="set"/>
+            <slideComp :data="slideData" style="border: 3px solid white;"/>
         </div>
         <div class="b" v-else>
           <keep-alive >
@@ -147,13 +147,6 @@ const compPre =()=>{
   & h1{
     text-align: center;
     margin: 1.5% 0;
-  }
-  & .set{
-    .control{
-      & .center{
-        width: 15%;
-      }
-    }
   }
 }
 </style>

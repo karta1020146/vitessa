@@ -202,9 +202,11 @@ nav a {
     }
   }
   .components{
-    & .center{
-      & span{
-        background-color: #fff;
+    & .control{
+      & .aaa{
+        & span{
+          background-color: #fff;
+        }
       }
     }
     .food .container{
