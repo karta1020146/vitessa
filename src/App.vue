@@ -5,14 +5,15 @@ import HelloWorld from './components/HelloWorld.vue'
 import cart from './components/cart.vue'
 import dark from './components/dark.vue'
 import { useCartStore } from "./stores/cart";
-const slideComp = defineAsyncComponent(() => import("remoteSlide/slideComp"));
+import { useToogle } from "./composables/toogle";
+// const slideComp = defineAsyncComponent(() => import("remoteSlide/slideComp"));
+const {toogleFunction} =useToogle() // 開關
 
-const cartStore =useCartStore()
+const cartStore =useCartStore() //購物車store
 
 const isDark = ref(false)
-
 const darkHandler = () => {
-  isDark.value = !isDark.value
+  toogleFunction(isDark)
   localStorage.setItem('dark', JSON.stringify(isDark.value))
 } // 資料存入localStorage，並轉字串
 
@@ -20,10 +21,10 @@ const dkdHandler = () => {
   return isDark.value ? 'black' : 'light'
 }
 
-const toogleValue = ref(false)
+const isToogle = ref(false)
 
 const toogleClose=()=>{
-  toogleValue.value = !toogleValue.value
+  toogleFunction(isToogle)
 }
 
 const localValue = localStorage.getItem('dark') //取用localStorage資料
@@ -41,7 +42,7 @@ if(localValue){
     <div class="cartBtnContainer">
       <cart
       :class="dkdHandler()"
-      :isClose="toogleValue" 
+      :isClose="isToogle" 
       @toogleClose="toogleClose"
       />
       <button class="cartButton" @click="toogleClose">
@@ -205,6 +206,9 @@ nav a {
       & span{
         background-color: #fff;
       }
+    }
+    .food .container{
+      background-color: red;
     }
   }
 

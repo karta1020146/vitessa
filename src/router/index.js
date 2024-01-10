@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import app from '../App.vue'
+import NotFound from '../views/NotFound.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,6 +24,11 @@ const router = createRouter({
       path: '/products/:id',
       name: 'products',
       component: () => import('../views/products.vue')
+    },
+    {
+      path: '/:NotFound(.*)*',
+      name: 'NotFound',
+      component: NotFound,
     },
   ]
 })

@@ -1,5 +1,7 @@
 <script setup>
 import { computed, ref, watch } from 'vue';
+import { useToogle } from "../composables/toogle";
+    const {toogleFunction} = useToogle()
     const newFood = ref('')
     const id = ref(0)
     const list =ref([])
@@ -37,7 +39,7 @@ import { computed, ref, watch } from 'vue';
     } //答案值遞增
 
     const autoToogle =()=>{
-        isSetInterval.value = !isSetInterval.value
+        toogleFunction(isSetInterval)
     } //答案開關
 
     const toogleWord =computed(()=>{
@@ -89,20 +91,18 @@ import { computed, ref, watch } from 'vue';
 
 <style scoped>
     .food{
+        color: black;
         width: 100%;
         height:70vh;
-        /* border: 1px solid red; */
         & .container{
-            background-color: white;
+            background-color: rgb(176, 160, 160);
             width: 80%;
             height: 65vh;
             padding: 1%;
             border-radius: 10px;
-            /* border:1px solid blue; */
             margin: auto;
         }
         & .input{
-            /* border: 1px solid blue; */
             margin: 1.5% 0;
             text-align: center;
             & input{
@@ -130,9 +130,12 @@ import { computed, ref, watch } from 'vue';
             /* flex-wrap: wrap; */
             flex-direction: column;
             justify-content: space-between;
-            ul{
+            & ul{
                 height: 75%;
                 overflow-y: scroll;
+                & li{
+                    font-weight: bold;
+                }
             }
             & li button{
                 cursor: pointer;

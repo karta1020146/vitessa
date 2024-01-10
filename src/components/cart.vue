@@ -2,15 +2,17 @@
     import { useCartStore } from "../stores/cart";
     import { storeToRefs } from "pinia";
     import { ref,computed,watch } from "vue";
+    import { useToogle } from "../composables/toogle";
+    const {toogleFunction} = useToogle()
     const cartStore = useCartStore()
     const {cartValue} =storeToRefs(cartStore)
     const {removeCart,re} = cartStore
     const props = defineProps(['isClose'])
     const emit = defineEmits(['toogleClose'])
 
-    const toogleClose = ()=>{
-        props.isClose = !props.isClose
-    }
+    // const toogleClose = ()=>{
+    //     toogleFunction(props.isClose)
+    // }
 
     const removeItem =(items)=>{
         cartStore.removeCart(items)

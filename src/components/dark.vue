@@ -1,10 +1,13 @@
 <script setup>
 import { ref } from 'vue'
+import { useToogle } from "../composables/toogle";
+const {toogleFunction} = useToogle()
 const emit = defineEmits(['darkHandler'])
 const props = defineProps(['toggle'])
-const darkHandler = () => {
-    props.toggle = !props.toggle
-}
+
+// const darkHandler = () => {
+//     toogleFunction(props.toggle)
+// }
 const roundHandler = () => {
     return  props.toggle ? 'right' : 'left'
 }
