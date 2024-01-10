@@ -1,0 +1,128 @@
+<script setup>
+    import{ref,computed} from'vue'
+    import{ useShopStore } from '../stores/shop.js'
+    import {storeToRefs } from 'pinia'
+    import {RouterLink} from 'vue-router' 
+    const store =useShopStore()
+    const {data} =storeToRefs(store)
+    const category= ref([
+        {id:1,text:"men's clothing"},
+        {id:2,text:"jewelery"},
+        {id:3,text:"electronics"},
+        {id:4,text:"women's clothing"},
+    ])
+    const toogleFilter =ref(false)
+    const filterData =ref()
+    const showFilter = (cat)=>{
+        toogleFilter.value = true;
+        filterData.value = data.value.filter((item) => item.category === cat)
+    }
+    const showAll = ()=>{
+        toogleFilter.value = false
+    }
+    const ddd =computed(()=>{
+        return toogleFilter.value?
+        filterData.value 
+        : 
+        data.value
+    })
+</script>
+
+<template>
+    <div class="shop">
+        <div class="tag">
+            Category : 
+            <button @click="showAll">
+                All
+            </button>
+            <button v-for="item of category" :key="item.id" @click="showFilter(item.text)">
+                {{ item.text }}
+            </button>
+        </div>
+        <div class="container">
+            <div class="data" v-for="item of ddd" :key="item.id">
+                <RouterLink :to="`/products/${item.id}`">
+                    <div class="image">
+                        <img :src="item.image" alt="product_image">
+                    </div>
+                    <div class="detail">
+                        <p><span class="title">Name : </span>{{ item.title }}</p>
+                        <p><span class="title">Price : </span>US$ {{ item.price }}</p>
+                        <p><span class="title">Category : </span>{{ item.category }}</p>
+                    </div>
+                </RouterLink>
+            </div>
+        </div>
+    </div>
+</template>
+
+<style scoped>
+.shop{
+    margin: 1% 0;
+    .tag{
+        button{
+            font-size: 17px;
+            margin: 1% .5%;
+            cursor: pointer;
+        }
+    }
+    .container{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap:wrap ;
+        a{
+            text-decoration: none;
+        }
+        .data{
+            width: 18%;
+            border: 2px solid black;
+            border-radius: 3px;
+            /* padding: .5%; */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 1% ;
+            text-align: left;
+            .detail{
+                text-decoration: none;
+                color: black;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                padding: 5%;
+
+                p{
+                    border-bottom: 1px solid;
+                    overflow:hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    font-weight: bold;
+                    .title{
+                        font-size: 18px;
+                    }
+                }
+            }
+            .image{
+                width: 100%;
+                background-color: #fff;
+                height: 220px;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                object-fit: contain;
+                padding: .5%;
+
+                img{
+                    width: 100%;
+                    padding: 20%;
+                    vertical-align: bottom;
+                }
+            }
+        }
+    }
+}
+</style>
