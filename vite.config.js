@@ -27,7 +27,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:3001",
+        target: "https://karta1020146.github.io/vitessa/",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },

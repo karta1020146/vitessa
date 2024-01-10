@@ -12,7 +12,7 @@ const slideComp = defineAsyncComponent(() => import("remoteSlide/slideComp"));
     
       <food />
     
-    <!-- <slideComp /> -->
+    <slideComp />
   </div>
 </template>
 
