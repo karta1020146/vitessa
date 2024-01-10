@@ -1,68 +1,65 @@
 <script setup>
-import { useCartStore } from '../stores/cart.js'
-import { storeToRefs } from 'pinia';
-import {useRoute} from'vue-router' 
-import {onMounted, ref, watch,computed} from 'vue'
-import {RouterLink} from 'vue-router' 
-import axios from 'axios'
-const cartStore = useCartStore()
-const {cartValue} = storeToRefs(cartStore) //data
-const {addCart} = cartStore // function
-const route = useRoute()
-const fetchData =ref() //所有商品資料
-const filterData =ref() //比對後頁面商品資料
+    import { useCartStore } from '../stores/cart.js'
+    import { storeToRefs } from 'pinia';
+    import {useRoute} from'vue-router' 
+    import {onMounted, ref, watch,computed} from 'vue'
+    import {RouterLink} from 'vue-router' 
+    import axios from 'axios'
+    const cartStore = useCartStore()
+    const {cartValue} = storeToRefs(cartStore) //data
+    const {addCart} = cartStore // function
+    const route = useRoute()
+    const fetchData =ref() //所有商品資料
+    const filterData =ref() //比對後頁面商品資料
 
-const fetchAxios = async()=>{
-    try {
-        const res = await axios.get('https://fakestoreapi.com/products'); 
-        fetchData.value = res.data;
-        filterData.value = fetchData.value.filter(v => v.id == route.params.id )
-    } catch (error) {
-        console.log("error :",error);
+    const fetchAxios = async()=>{
+        try {
+            const res = await axios.get('https://fakestoreapi.com/products'); 
+            fetchData.value = res.data;
+            filterData.value = fetchData.value.filter(v => v.id == route.params.id )
+        } catch (error) {
+            console.log("error :",error);
+        }
     }
-}
-fetchAxios()
+    fetchAxios()
 
-const counts = ref(0)
+    const counts = ref(0)
 
-const addCounts = ()=>{
-    counts.value += 1
-}
-const reduceCounts = ()=>{
-    if (counts.value > 1) {
-        counts.value -= 1
-    } else {
-        counts.value = 0
+    const addCounts = ()=>{
+        counts.value += 1
     }
-}
-const addProductToCart = (vueItem) => {
-    if(counts.value > 0 ){
-        cartStore.addCart({vueItem,counts})
-        alert('ok')
+    const reduceCounts = ()=>{
+        if (counts.value > 1) {
+            counts.value -= 1
+        } else {
+            counts.value = 0
+        }
     }
+    const addProductToCart = (vueItem) => {
+        if(counts.value > 0 ){
+            cartStore.addCart({vueItem,counts})
+            alert('ok')
+        }
 
-    // console.log('vueItem',vueItem);
-    // console.log('counts',counts);
-    // console.log('total',total);
-}
-const size = ref(16)
+        // console.log('vueItem',vueItem);
+        // console.log('counts',counts);
+        // console.log('total',total);
+    }
+    const size = ref(16)
 
-const addSize = ()=>{
-    if (size.value <= 26) {
-        size.value += 3
-    } 
-}
-const reduceSize = ()=>{
-    if (size.value <= 28 && size.value >= 19) {
-        size.value -= 3
-    } 
-}
-
-
+    const addSize = ()=>{
+        if (size.value <= 26) {
+            size.value += 3
+        } 
+    }
+    const reduceSize = ()=>{
+        if (size.value <= 28 && size.value >= 19) {
+            size.value -= 3
+        } 
+    }
 </script>
 
 <template>
-
     <div class="products">
         <p>
             <span><RouterLink to="/" class="linkShop">Shop</RouterLink></span> / 
@@ -73,7 +70,7 @@ const reduceSize = ()=>{
                 <div class="image" >
                     <img :src="item.image" alt="item_image">
                 </div>
-                <div class="price">{{ item.price * counts }}
+                <div class="price">
                     <h2>
                         Name : {{ item.title }}
                     </h2>

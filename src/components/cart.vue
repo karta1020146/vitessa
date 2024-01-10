@@ -19,7 +19,7 @@
     }
 
     const totalAmount = computed(() => {
-        return cartValue.value.reduce((accumulator, items) => accumulator + items.jsItem.counts * items.jsItem.vueItem.price, 0);
+        cartValue.value.reduce((accumulator, items) => accumulator + items.jsItem.counts * items.jsItem.vueItem.price, 0);
     });
 
     const rrr =()=>{

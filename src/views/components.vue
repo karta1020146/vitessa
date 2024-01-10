@@ -9,9 +9,18 @@ const {toogleFunction} = useToogle()
 
 const toogleValue = ref(false)
 
-// const toogleChange =()=>{
-//   toogleFunction(toogleValue)
-// }
+const slideData = ref([
+    { id: 1, url: 'https://picsum.photos/500/500?random=1' },
+    { id: 2, url: 'https://picsum.photos/500/500?random=2' },
+    { id: 3, url: 'https://picsum.photos/500/500?random=3' },
+    { id: 4, url: 'https://picsum.photos/500/500?random=4' },
+    { id: 5, url: 'https://picsum.photos/500/500?random=5' },
+    { id: 6, url: 'https://picsum.photos/500/500?random=5' },
+])
+
+const titleValue =computed(() =>{
+  return toogleValue.value? '遠端簡易輪播': '自製美食抽籤'
+})
 
 const compShow = computed(()=>{
   return toogleValue.value? food : slideComp
@@ -36,16 +45,15 @@ const compPre =()=>{
       <button @click="compPre">&larr;</button>
     </div>
     <div class="compWrap">
-      <h1> {{ toogleValue }} This is an components page</h1>
+      <h1>{{ titleValue }}</h1>
       <transition-group :name="nameShow">
           <div class="a" v-if="toogleValue">
-            <keep-alive >
-              <food />
-            </keep-alive>
+            <slideComp :data="slideData" class="set"/>
         </div>
         <div class="b" v-else>
-          <!-- <food style="border: 2px solid blue;"/>  -->
-          <slideComp class="set"/>
+          <keep-alive >
+              <food />
+          </keep-alive>
         </div>
       </transition-group>
       <!-- <component :is="compShow" :key="toogleValue"></component> -->
@@ -106,11 +114,11 @@ const compPre =()=>{
 .pre-enter-to {
   right: 0%;
 }
+/*****************切換動畫****************** */
 
 
 .components{
   width: 100%;
-  /* border: 1px solid green; */
   display: flex;
   .preBtn,.nextBtn{
     display: flex;
@@ -129,18 +137,16 @@ const compPre =()=>{
     width: 85%;
     margin: auto;
     height: 80vh;
-    /* border: 2px solid red; */
     position: relative;
     overflow: hidden;
     .a,.b{
       position: absolute;
       width: 100%;
-      margin: 3% 0 0 0;
     }
   }
   & h1{
     text-align: center;
-    padding: 1% 0;
+    margin: 1.5% 0;
   }
   & .set{
     .control{
