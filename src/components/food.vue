@@ -93,10 +93,10 @@ import { useToogle } from "../composables/toogle";
     .food{
         color: black;
         width: 100%;
-        height:70vh;
+        /* height:70vh; */
         & .container{
             background-color: rgb(176, 160, 160);
-            width: 80%;
+            width: 95%;
             height: 65vh;
             padding: 1%;
             border-radius: 10px;

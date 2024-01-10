@@ -97,6 +97,8 @@
 }
 /*toogle動畫*********************************************/
 .cart{
+    position: relative;
+    z-index: 5;
     & h2{
         font-size: 30px;
         font-weight: bold;
