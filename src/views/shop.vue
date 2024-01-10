@@ -31,7 +31,7 @@
 <template>
     <div class="shop">
         <div class="tag">
-            Category : 111
+            Category : 222
             <button @click="showAll">
                 All
             </button>

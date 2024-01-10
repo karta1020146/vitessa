@@ -25,12 +25,10 @@ export default defineConfig({
     }
   },
   server: {
-    proxy: {
-      "/api": {
-        target: "https://karta1020146.github.io/vitessa/",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
+    "/api": {
+      target: "https://karta1020146.github.io/vitessa/",
+      changeOrigin: true,
+      rewrite: (path) => path.replace(/^\/api/, ""),
     },
   },
 })
