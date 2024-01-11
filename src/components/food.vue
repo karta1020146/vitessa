@@ -73,7 +73,7 @@ import { useToogle } from "../composables/toogle";
         <div class="container">
             <div class="input">
                 <input type="text" v-model="newFood" @keydown.enter="addFood">
-                <button @click="addFood"  >ADD</button>
+                <button @click="addFood" >ADD</button>
             </div>
             <div class="board">
                 <ul>
