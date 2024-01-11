@@ -10,11 +10,12 @@
   const toogleValue = ref(false)
 
   const slideData = ref([
-    { id: 1, url: '../../public/number1.jpg' },
-    { id: 2, url: '../../public/number2.jpg' },
-    { id: 3, url: '../../public/number3.jpg' },
-    { id: 4, url: '../../public/number4.jpg' },
-    { id: 5, url: '../../public/number5.jpg' },
+      { id: 1, url: 'https://picsum.photos/500/500?random=1' },
+      { id: 2, url: 'https://picsum.photos/500/500?random=2' },
+      { id: 3, url: 'https://picsum.photos/500/500?random=3' },
+      { id: 4, url: 'https://picsum.photos/500/500?random=4' },
+      { id: 5, url: 'https://picsum.photos/500/500?random=5' },
+      { id: 6, url: 'https://picsum.photos/500/500?random=6' },
   ])
 
   const titleValue =computed(() =>{
@@ -45,7 +46,6 @@
     </div>
     <div class="compWrap">
       <h1>{{ titleValue }}</h1>
-      <img src="../assets/number1.jpg" alt="">
       <transition-group :name="nameShow">
           <div class="a" v-if="toogleValue">
             <slideComp 
