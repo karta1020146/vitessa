@@ -45,6 +45,7 @@
     </div>
     <div class="compWrap">
       <h1>{{ titleValue }}</h1>
+      <img src="../assets/number1.jpg" alt="">
       <transition-group :name="nameShow">
           <div class="a" v-if="toogleValue">
             <slideComp 
