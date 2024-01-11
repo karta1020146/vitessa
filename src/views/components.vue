@@ -1,41 +1,40 @@
 <script setup>
-import { computed, ref } from "vue";
-import {defineAsyncComponent} from 'vue'
-import food from "../components/food.vue";
-const slideComp = defineAsyncComponent(() => import("slide/slide"));
-import { useToogle } from "../composables/toogle";
+  import { computed, ref } from "vue";
+  import {defineAsyncComponent} from 'vue'
+  import food from "../components/food.vue";
+  const slideComp = defineAsyncComponent(() => import("slide/slide"));
+  import { useToogle } from "../composables/toogle";
 
-const {toogleFunction} = useToogle()
+  const {toogleFunction} = useToogle()
 
-const toogleValue = ref(false)
+  const toogleValue = ref(false)
 
-const slideData = ref([
-    { id: 1, url: 'https://picsum.photos/500/500?random=1' },
-    { id: 2, url: 'https://picsum.photos/500/500?random=2' },
-    { id: 3, url: 'https://picsum.photos/500/500?random=3' },
-    { id: 4, url: 'https://picsum.photos/500/500?random=4' },
-    { id: 5, url: 'https://picsum.photos/500/500?random=5' },
-    { id: 6, url: 'https://picsum.photos/500/500?random=6' },
-])
+  const slideData = ref([
+    { id: 1, url: '../src/assets/number1.jpg' },
+    { id: 2, url: '../src/assets/number2.jpg' },
+    { id: 3, url: '../src/assets/number3.jpg' },
+    { id: 4, url: '../src/assets/number4.jpg' },
+    { id: 5, url: '../src/assets/number5.jpg' },
+  ])
 
-const titleValue =computed(() =>{
-  return toogleValue.value? '遠端簡易輪播': '自製美食抽籤'
-})
+  const titleValue =computed(() =>{
+    return toogleValue.value? '遠端簡易輪播': '自製美食抽籤'
+  })
 
-const compShow = computed(()=>{
-  return toogleValue.value? food : slideComp
-})
+  const compShow = computed(()=>{
+    return toogleValue.value? food : slideComp
+  })
 
-const nameShow =computed(() =>{
-  return toogleValue.value? 'next':'pre'
-})
+  const nameShow =computed(() =>{
+    return toogleValue.value? 'next':'pre'
+  })
 
-const compNext =()=>{
-  toogleValue.value = true
-}
-const compPre =()=>{
-  toogleValue.value = false
-}
+  const compNext =()=>{
+    toogleValue.value = true
+  }
+  const compPre =()=>{
+    toogleValue.value = false
+  }
 
 </script>
 

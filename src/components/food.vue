@@ -49,7 +49,7 @@ import { useToogle } from "../composables/toogle";
     const intervalIndex =ref() //接收停止計時器
 
     const startInterval = () => {
-        intervalIndex.value = setInterval(start, 25);
+        intervalIndex.value = setInterval(start, 5);
     }; //開始計時
     
     const autoPlay =()=>{
@@ -72,7 +72,10 @@ import { useToogle } from "../composables/toogle";
     <div class="food">
         <div class="container">
             <div class="input">
-                <input type="text" v-model="newFood" @keydown.enter="addFood">
+                <input type="text" 
+                v-model="newFood" 
+                @keydown.enter="addFood"
+                placeholder="請輸入你想吃的食物">
                 <button @click="addFood" >ADD</button>
             </div>
             <div class="board">
@@ -129,6 +132,9 @@ import { useToogle } from "../composables/toogle";
             /* flex-wrap: wrap; */
             flex-direction: column;
             justify-content: space-between;
+            & p{
+                font-size: 50px;
+            }
             & ul{
                 height: 75%;
                 overflow-y: scroll;
@@ -154,12 +160,12 @@ import { useToogle } from "../composables/toogle";
                 & :first-child{
                     width: 85%;
                     margin:0 1% 0 0;
-                    height: 30px;
+                    height: 45px;
                 }
                 & :last-child{
                     font-size: 25px;
                     width: 15%;
-                    height: 30px;
+                    height: 45px;
                 }
             }
         }
