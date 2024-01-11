@@ -10,11 +10,11 @@
   const toogleValue = ref(false)
 
   const slideData = ref([
-    { id: 1, url: '../public/number1.jpg' },
-    { id: 2, url: '../public/number2.jpg' },
-    { id: 3, url: '../public/number3.jpg' },
-    { id: 4, url: '../public/number4.jpg' },
-    { id: 5, url: '../public/number5.jpg' },
+    { id: 1, url: '../asstes/number1.jpg' },
+    { id: 2, url: '../asstes/number2.jpg' },
+    { id: 3, url: '../asstes/number3.jpg' },
+    { id: 4, url: '../asstes/number4.jpg' },
+    { id: 5, url: '../asstes/number5.jpg' },
   ])
 
   const titleValue =computed(() =>{
