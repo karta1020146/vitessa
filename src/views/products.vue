@@ -40,7 +40,6 @@
             cartStore.addCart({vueItem,counts})
             alert('ok')
         }
-
         // console.log('vueItem',vueItem);
         // console.log('counts',counts);
         // console.log('total',total);
@@ -93,7 +92,6 @@
                                 </button>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>

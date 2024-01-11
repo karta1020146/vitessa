@@ -10,17 +10,13 @@
     const props = defineProps(['isClose'])
     const emit = defineEmits(['toogleClose'])
 
-    // const toogleClose = ()=>{
-    //     toogleFunction(props.isClose)
-    // }
-
     const removeItem =(items)=>{
         cartStore.removeCart(items)
     }
 
     const totalAmount = computed(() => {
-        cartValue.value.reduce((accumulator, items) => accumulator + items.jsItem.counts * items.jsItem.vueItem.price, 0);
-    });
+        return cartValue.value.reduce((accumulator, items) => accumulator + items.jsItem.counts * items.jsItem.vueItem.price, 0);
+    }); // 購物車總金額 
 
     const rrr =()=>{
         cartStore.re()
@@ -64,9 +60,6 @@
                         </td>
                         <!-- <p>total : {{ items.jsItem.counts * items.jsItem.vueItem.price  }}</p> -->
                     </tr>
-                    
-                        
-                    
                 </table>
             </div>
             <h2 class="total">Total : {{ totalAmount }}</h2>
@@ -167,5 +160,4 @@
         border: 0;
     }
 }
-
 </style>

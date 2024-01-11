@@ -1,12 +1,11 @@
 <script setup>
-import {ref,defineAsyncComponent} from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import cart from './components/cart.vue'
-import dark from './components/dark.vue'
-import { useCartStore } from "./stores/cart";
-import { useToogle } from "./composables/toogle";
-// const slideComp = defineAsyncComponent(() => import("remoteSlide/slideComp"));
+  import {ref,defineAsyncComponent} from 'vue'
+  import { RouterLink, RouterView } from 'vue-router'
+  import HelloWorld from './components/HelloWorld.vue'
+  import cart from './components/cart.vue'
+  import dark from './components/dark.vue'
+  import { useCartStore } from "./stores/cart";
+  import { useToogle } from "./composables/toogle";
 const {toogleFunction} =useToogle() // 開關
 
 const cartStore =useCartStore() //購物車store
@@ -57,9 +56,13 @@ if(localValue){
   @darkHandler="darkHandler"
   />
     <header>
+      <HelloWorld msg="商城 + 組件">
+        <template #title>
+          本次練習是用 Vite + Pinia
+        </template>
+      </HelloWorld>
       <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
       <div class="wrapper">
-        <!-- <HelloWorld msg="測試" /> -->
         <nav>
           <RouterLink  to="/">Shop</RouterLink>
           <RouterLink  to="/components">Components</RouterLink>
@@ -113,16 +116,6 @@ if(localValue){
   }
 
 }
-
-/* header {
-  line-height: 1.5;
-  background-color: #fff;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-} */
 
 nav {
   width: 100%;
