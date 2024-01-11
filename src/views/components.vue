@@ -48,7 +48,9 @@ const compPre =()=>{
       <h1>{{ titleValue }}</h1>
       <transition-group :name="nameShow">
           <div class="a" v-if="toogleValue">
-            <slideComp :data="slideData" />
+            <slideComp 
+            :data="slideData" 
+            style="background-color: #3CA877;"/>
         </div>
         <div class="b" v-else>
           <keep-alive >
