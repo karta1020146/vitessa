@@ -8,9 +8,15 @@
     <script type="module" crossorigin src="/vitessa/assets/index-eqWZ4VW4.js"></script>
     <link rel="modulepreload" crossorigin href="/vitessa/assets/runtime-core.esm-bundler-6KT88T6a.js">
     <link rel="stylesheet" crossorigin href="/vitessa/assets/index-KFXavAy-.css">
+    
+    <script>
+      sessionStorage.redirect = location.href;
+    </script>
+    <meta http-equiv=”refresh” content=”0;URL=’/專案名稱’”></meta>
+  
   </head>
   <body>
-    <script>
+    <!-- <script>
       (function(){
         let redirect = sessionStorage.redirect;
         delete sessionStorage.redirect;
@@ -18,7 +24,7 @@
           history.replaceState(null, null, redirect);
         }
       })();
-    </script>
-    <div id="app" style="border: 1px solid blue;"></div>
+    </script> -->
+    <div id="app" style="border: 1px solid white;"></div>
   </body>
 </html>
