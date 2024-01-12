@@ -1,8 +1,8 @@
 <script setup>
+    import {onMounted, ref, watch, computed, inject} from 'vue'
     import { useCartStore } from '../stores/cart.js'
     import { storeToRefs } from 'pinia';
     import {useRoute} from'vue-router' 
-    import {onMounted, ref, watch,computed} from 'vue'
     import {RouterLink} from 'vue-router' 
     import axios from 'axios'
     const cartStore = useCartStore()
@@ -56,12 +56,18 @@
             size.value -= 3
         } 
     }
+
+    const isDark =inject('isDark')
+    const injectValue = computed(()=>{
+        return isDark.value ? "linkShopD":"linkShopL"
+    })
+
 </script>
 
 <template>
     <div class="products">
         <p>
-            <span><RouterLink to="/" class="linkShop">Shop</RouterLink></span> / 
+            <span><RouterLink to="/" :class="injectValue">Shop</RouterLink></span> / 
             <span class="now">Products</span>
         </p>
         <div class="main" v-for="item of filterData" :key="item.id">
@@ -126,7 +132,10 @@
 <style scoped>
 
 .products{
-    .linkShop{
+    .linkShopD{
+        color: white;
+    }
+    .linkShopL{
         color: black;
     }
     .now{

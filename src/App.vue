@@ -1,5 +1,5 @@
 <script setup>
-  import {ref,defineAsyncComponent} from 'vue'
+  import {ref,defineAsyncComponent,provide} from 'vue'
   import { RouterLink, RouterView } from 'vue-router'
   import HelloWorld from './components/HelloWorld.vue'
   import cart from './components/cart.vue'
@@ -11,6 +11,9 @@ const {toogleFunction} =useToogle() // 開關
 const cartStore =useCartStore() //購物車store
 
 const isDark = ref(false)
+
+provide('isDark',isDark)
+
 const darkHandler = () => {
   toogleFunction(isDark)
   localStorage.setItem('dark', JSON.stringify(isDark.value))
