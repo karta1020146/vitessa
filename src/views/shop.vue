@@ -42,6 +42,9 @@
         <div class="container">
             <div class="data" v-for="item of ddd" :key="item.id">
                 <RouterLink :to="`/products/${item.id}`">
+                    <div class="blur">
+                        <h2>View details</h2>
+                    </div>
                     <div class="image">
                         <img :src="item.image" alt="product_image">
                     </div>
@@ -57,6 +60,19 @@
 </template>
 
 <style scoped>
+.blur{
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & h2{
+        font-size: 40px;
+    }
+}
     .shop{
         margin: 1% 0;
         & .tag{
@@ -74,16 +90,20 @@
             & a{
                 text-decoration: none;
             }
+            & .data:hover .blur{
+                opacity:60%;
+                transition:.4s;
+            }
             & .data{
                 width: 18%;
                 border: 2px solid black;
                 border-radius: 3px;
-                /* padding: .5%; */
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
                 margin: 1% ;
                 text-align: left;
+                position: relative;
                 & .detail{
                     text-decoration: none;
                     color: black;
@@ -91,7 +111,7 @@
                     display: flex;
                     flex-direction: column;
                     justify-content: space-evenly;
-                    padding: 5%;
+                    /* padding: 5%; */
 
                     & p{
                         border-bottom: 1px solid;
