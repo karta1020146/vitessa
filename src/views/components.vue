@@ -1,5 +1,5 @@
 <script setup>
-  import { computed, ref, inject } from "vue";
+  import { computed, ref } from "vue";
   import {defineAsyncComponent} from 'vue'
   import food from "../components/food.vue";
   const slideComp = defineAsyncComponent(() => import("slide/slide"));
@@ -36,11 +36,6 @@
     toogleValue.value = false
   }
 
-  const isDark = inject('isDark')
-  const injectValue = computed(() =>{
-    return isDark.value? '#3CA877': 'black'
-  })
-
 </script>
 
 <template>
@@ -53,9 +48,8 @@
       <transition-group :name="nameShow">
           <div class="a" v-if="toogleValue">
             <slideComp 
-            :data="slideData"
-            :style="'color:' + injectValue" 
-            />
+            :data="slideData" 
+            style="background-color: #3CA877;"/>
         </div>
         <div class="b" v-else>
           <keep-alive >
