@@ -62,7 +62,7 @@
                     </tr>
                 </table>
             </div>
-            <h2 class="total">Total : {{ totalAmount }}</h2>
+            <h2 class="total">Total : US$ {{ totalAmount }}</h2>
         </div>
     </Transition>
 </template>
