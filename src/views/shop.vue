@@ -43,7 +43,7 @@
             <div class="data" v-for="item of ddd" :key="item.id">
                 <RouterLink :to="`/products/${item.id}`">
                     <div class="blur">
-                        <h2>View details</h2>
+                        <h2>View Details</h2>
                     </div>
                     <div class="image">
                         <img :src="item.image" alt="product_image">

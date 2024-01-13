@@ -5,12 +5,17 @@
     import {useRoute} from'vue-router' 
     import {RouterLink} from 'vue-router' 
     import axios from 'axios'
+    import modal from '../components/modal.vue'
+    import { useToogle } from "../composables/toogle";
+    
+    const {toogleFunction} = useToogle()
     const cartStore = useCartStore()
     const {cartValue} = storeToRefs(cartStore) //data
     const {addCart} = cartStore // function
     const route = useRoute()
     const fetchData =ref() //所有商品資料
     const filterData =ref() //比對後頁面商品資料
+    const toogleValue = ref(false)
 
     const fetchAxios = async()=>{
         try {
@@ -34,11 +39,17 @@
         } else {
             counts.value = 0
         }
-    }
+    }    
+    const textBoo = ref(true) //modal 內容判斷
+
     const addProductToCart = (vueItem) => {
         if(counts.value > 0 ){
             cartStore.addCart({vueItem,counts})
-            alert('ok')
+            toogleFunction(toogleValue)
+            textBoo.value = true
+        } else{
+            toogleFunction(toogleValue)
+            textBoo.value = false
         }
         // console.log('vueItem',vueItem);
         // console.log('counts',counts);
@@ -60,12 +71,26 @@
     const isDark =inject('isDark')
     const injectValue = computed(()=>{
         return isDark.value ? "linkShopD":"linkShopL"
-    })
+    }) //深色模式改麵包屑
+
+
+    const modalText = computed(() =>{
+        return textBoo.value? 'Success~': 'No Counts!!!'
+    }) //modal 字樣判斷
+    const toogleClose =(() =>{
+        toogleFunction(toogleValue)
+    }) // modal開關切換
 
 </script>
 
 <template>
     <div class="products">
+        <transition>
+            <modal
+            :text="modalText"
+            :toogleValue="toogleValue" 
+            @toogleClose="toogleClose"/>
+        </transition>
         <p>
             <span><RouterLink to="/" :class="injectValue">Shop</RouterLink></span> / 
             <span class="now">Products</span>
@@ -130,135 +155,155 @@
 </template>
 
 <style scoped>
+    .v-enter-from{
+        opacity: 0;
+    }
+    .v-enter-active{
+        transition:.2s;
+    }
+    .v-enter-to{
+        opacity: 1;
+    }
 
-.products{
-    .linkShopD{
-        color: white;
+    .v-leave-from{
+        opacity: 1;
     }
-    .linkShopL{
-        color: black;
+    .v-leave-active{
+        transition:.2s;
     }
-    .now{
-        color:hsla(160, 100%, 37%, 1);
-        font-weight: bolder;
+    .v-leave-to{
+        opacity: 0;
     }
-    width: 100%;
-    margin: 1% 0;
-    button:hover{
-        color: #353535;
-        background-color: hsla(160, 100%, 37%, 1);
-        transition: .3s;
-    }
-    .main{
-        width: 100%;
-        padding: 3%;
-        border-radius:8px;
-        .title{
-            width: 100%;
-            height: 280px;
-            display: flex;
-            border: 1px solid;
-            border-radius:8px;
-            .image{
-                width: 30%;
-                border-right: 1px solid;
-                padding: 5%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: #fff;
-                border-top-left-radius:8px;
-                border-bottom-left-radius:8px;
-                img{
-                    width: 50%;
-                    vertical-align: bottom;
-                }
-            }
-            .price{
-                width: 65%;
-                margin: auto 3%;
-                h2{
-                    margin: 3% 0;
-                }
-                .count{
-                    display: flex;
-                    h2{
-                        width: 9%;
-                        margin: 0 1% 0 0;
-                    }
-                    .container{
-                        width: 91%;
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                    }
-                    .number{
-                        width: 50%;
-                        display: flex;
-                        p{
-                            width: 7%;
-                            text-align: center;
-                            margin: 0 3%;
-                            font-size: 22px;
-                        }
-                        button{
-                            cursor: pointer;
-                            border-radius: 100%;
-                            border: 1px solid;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            font-size: 25px;
-                            width: 30px;
-                            height: 30px;
-                        }
-                    }
-                    .add{
-                        width: 50%;
-                        button{
-                            cursor: pointer;
-                            border: 1px solid;
-                            border-radius: 5px; 
-                            font-size: 30px;
-                            margin-left: 65%  ;
-                            width: 100px;
-                        }
-                    }
-                }
-            }
+    /**modal動畫********************/
+
+    .products{
+        .linkShopD{
+            color: white;
         }
-        .detail{
-            margin: 2% 0;
-            border: 1px solid;
-            border-radius:8px;
-            padding: 3%;
-            height: 400px;
+        .linkShopL{
+            color: black;
+        }
+        .now{
+            color:hsla(160, 100%, 37%, 1);
+            font-weight: bolder;
+        }
+        width: 100%;
+        margin: 1% 0;
+        button:hover{
+            color: #353535;
+            background-color: hsla(160, 100%, 37%, 1);
+            transition: .3s;
+        }
+        .main{
             width: 100%;
-            overflow-y: scroll;
-            
-            .fontSizeControl{
+            padding: 3%;
+            border-radius:8px;
+            .title{
+                width: 100%;
+                height: 280px;
                 display: flex;
-                margin-left: 90%;
-                button{
+                border: 1px solid;
+                border-radius:8px;
+                .image{
+                    width: 30%;
+                    border-right: 1px solid;
+                    padding: 5%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    border: 1px solid;
-                    cursor: pointer;
-                    width: 40px;
-                    height: 40px;
-                    border-radius:100% ;
-                    margin: 0 10%;
+                    background-color: #fff;
+                    border-top-left-radius:8px;
+                    border-bottom-left-radius:8px;
+                    img{
+                        width: 50%;
+                        vertical-align: bottom;
+                    }
+                }
+                .price{
+                    width: 65%;
+                    margin: auto 3%;
+                    h2{
+                        margin: 3% 0;
+                    }
+                    .count{
+                        display: flex;
+                        h2{
+                            width: 9%;
+                            margin: 0 1% 0 0;
+                        }
+                        .container{
+                            width: 91%;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                        }
+                        .number{
+                            width: 50%;
+                            display: flex;
+                            p{
+                                width: 7%;
+                                text-align: center;
+                                margin: 0 3%;
+                                font-size: 22px;
+                            }
+                            button{
+                                cursor: pointer;
+                                border-radius: 100%;
+                                border: 1px solid;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                font-size: 25px;
+                                width: 30px;
+                                height: 30px;
+                            }
+                        }
+                        .add{
+                            width: 50%;
+                            button{
+                                cursor: pointer;
+                                border: 1px solid;
+                                border-radius: 5px; 
+                                font-size: 30px;
+                                margin-left: 65%  ;
+                                width: 100px;
+                            }
+                        }
+                    }
                 }
             }
-        }
-        .detail::-webkit-scrollbar-thumb {
-                background-color: #3CA877;
-        }
-        .detail::-webkit-scrollbar {
-            width: 8px;
-            background-color: black;
+            .detail{
+                margin: 2% 0;
+                border: 1px solid;
+                border-radius:8px;
+                padding: 3%;
+                height: 400px;
+                width: 100%;
+                overflow-y: scroll;
+                
+                .fontSizeControl{
+                    display: flex;
+                    margin-left: 90%;
+                    button{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border: 1px solid;
+                        cursor: pointer;
+                        width: 40px;
+                        height: 40px;
+                        border-radius:100% ;
+                        margin: 0 10%;
+                    }
+                }
+            }
+            .detail::-webkit-scrollbar-thumb {
+                    background-color: #3CA877;
+            }
+            .detail::-webkit-scrollbar {
+                width: 8px;
+                background-color: black;
+            }
         }
     }
-}
 </style>
