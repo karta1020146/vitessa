@@ -1,5 +1,5 @@
 <script setup>
-  import {ref,defineAsyncComponent,provide} from 'vue'
+  import {ref,defineAsyncComponent,provide, onMounted,watch} from 'vue'
   import { RouterLink, RouterView } from 'vue-router'
   import HelloWorld from './components/HelloWorld.vue'
   import cart from './components/cart.vue'
@@ -37,10 +37,42 @@ if(localValue){
 
 /*明暗模式**************************************/
 
+  const loadValue = ref(0)
+  const loadClose = ref(true)
+  const intervalId = ref() //停止interval需要的ID值
+  const loadAdd=()=>{
+    if (loadValue.value >= 0 && loadValue.value < 100) {
+      loadValue.value += 1
+    }
+    // console.log(loadValue.value);
+  }
+
+  const autoLoad=()=>{
+    intervalId.value =  setInterval(loadAdd, 10);
+  }
+  onMounted(()=>{
+    autoLoad()
+  })
+  
+  watch(loadValue,()=>{
+    if (loadValue.value == 100) {
+      clearInterval(intervalId.value)
+      loadClose.value = false
+    } 
+  })
+
 </script>
 
 <template >
   <div class="container" :class="dkdHandler()">
+    <transition>
+      <div class="loading" v-show="loadClose">
+        <em>
+          <h1>{{ loadValue }}%</h1>
+        </em>
+      </div>
+    </transition>
+
     <div class="cartBtnContainer">
       <cart
       :class="dkdHandler()"
@@ -79,6 +111,27 @@ if(localValue){
 <style scoped>
 
 .container{
+  .v-leave-active{
+    transition: .4s;
+  }
+  .v-leave-to{
+    opacity: 0;
+  }
+  .loading{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(198, 198, 198);
+
+  }
   min-height: 100vh;
   display: block;
   justify-content: center;
@@ -164,6 +217,9 @@ nav a {
 }
 
 .black {
+  .loading{
+    background-color: #353535;
+  }
   color: white;
   background-color: #353535;
   transition: .3s;
