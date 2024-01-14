@@ -17,13 +17,17 @@
     const filterData =ref() //比對後頁面商品資料
     const toogleValue = ref(false)
 
+    const isLoading = ref(true)
+
     const fetchAxios = async()=>{
         try {
             const res = await axios.get('https://fakestoreapi.com/products'); 
             fetchData.value = res.data;
-            filterData.value = fetchData.value.filter(v => v.id == route.params.id )
+            filterData.value = fetchData.value.filter(v => v.id == route.params.id );
         } catch (error) {
             console.log("error :",error);
+        } finally{
+            isLoading.value = false
         }
     }
     fetchAxios()
@@ -95,8 +99,12 @@
             <span><RouterLink to="/" :class="injectValue">Shop</RouterLink></span> / 
             <span class="now">Products</span>
         </p>
-        <div class="main" v-for="item of filterData" :key="item.id">
-            <div class="title">
+        <div v-if="isLoading" class="fetchLoad">
+            <img src="../assets/loading.svg" alt="">
+            <!-- <h2>{{ loadingValue }}</h2> -->
+        </div>
+        <div class="main" v-else  v-for="item of filterData" :key="item.id">
+            <div class="title" >
                 <div class="image" >
                     <img :src="item.image" alt="item_image">
                 </div>
@@ -155,6 +163,27 @@
 </template>
 
 <style scoped>
+    .fetchLoad img{
+            width: 4%;
+            animation:rotate360 .8s linear infinite ;
+        }
+        
+        @keyframes rotate360 {
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+    /**初始loading動畫效果*************** */
+    .fetchLoad{
+        width: 97%;
+        height: 1000px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .v-enter-from{
         opacity: 0;
     }
