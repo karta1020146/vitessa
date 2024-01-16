@@ -91,7 +91,7 @@ if(localValue){
   @darkHandler="darkHandler"
   />
     <header>
-      <HelloWorld msg="商城 + 組件">
+      <HelloWorld msg="商城(API) + 組件">
         <template #title>
           本次練習是用 Vite + Pinia
         </template>

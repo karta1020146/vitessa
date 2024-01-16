@@ -18,7 +18,7 @@
   ])
 
   const titleValue =computed(() =>{
-    return toogleValue.value? '遠端自製輪播': '自製美食抽籤'
+    return toogleValue.value? '跨專案組件': '自製美食抽籤'
   })
 
   const compShow = computed(()=>{
