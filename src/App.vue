@@ -156,7 +156,7 @@ if(localValue){
       align-items: center;
       position: relative;
       overflow: hidden;
-      .water{
+      .water{ 
         width: 200px;
         height: 200px;
         border-radius: 45%;
