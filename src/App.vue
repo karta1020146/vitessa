@@ -36,19 +36,20 @@ if(localValue){
 } //如果取用localStorage就轉回布林值
 
 /*明暗模式**************************************/
-
+  const marginValue = ref(220)
   const loadValue = ref(0)
   const loadClose = ref(true)
   const intervalId = ref() //停止interval需要的ID值
   const loadAdd=()=>{
     if (loadValue.value >= 0 && loadValue.value < 100) {
       loadValue.value += 1
+      marginValue.value -= 1.95
     }
     // console.log(loadValue.value);
   }
 
   const autoLoad=()=>{
-    intervalId.value =  setInterval(loadAdd, 10);
+    intervalId.value =  setInterval(loadAdd, 30);
   }
   onMounted(()=>{
     autoLoad()
@@ -67,9 +68,14 @@ if(localValue){
   <div class="container" :class="dkdHandler()">
     <transition>
       <div class="loading" v-show="loadClose">
-        <em>
-          <h1>{{ loadValue }}%</h1>
-        </em>
+        <div class="box">
+          <em>
+            <h1>{{ loadValue }}%</h1>
+          </em>
+          <div class="water" 
+            :style="'margin-top:'+ marginValue + '%;'">
+          </div>
+        </div>
       </div>
     </transition>
 
@@ -110,6 +116,16 @@ if(localValue){
 
 <style scoped>
 
+@keyframes rotate {
+  from{
+    rotate:0deg;
+  }
+  to{
+    rotate:360deg;
+  }
+  
+}
+
 .container{
   .v-leave-active{
     transition: .4s;
@@ -130,6 +146,26 @@ if(localValue){
     justify-content: center;
     align-items: center;
     background-color: rgb(198, 198, 198);
+    .box{
+      width: 175px;
+      height: 175px;
+      border-radius: 50%;
+      /* border:.5px solid ; */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      .water{
+        width: 200px;
+        height: 200px;
+        border-radius: 45%;
+        background-color: #0969da;
+        position: absolute;
+        z-index:-1 ;
+        animation: rotate 3s linear infinite;
+      }
+    }
 
   }
   min-height: 100vh;

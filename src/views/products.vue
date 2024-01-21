@@ -49,7 +49,7 @@
     const addProductToCart = (vueItem) => {
         if(counts.value > 0 ){
             cartStore.addCart({vueItem,counts})
-            toogleFunction(toogleValue)
+            toogleFunction(toogleValue) //modal畫面開關
             textBoo.value = true
         } else{
             toogleFunction(toogleValue)
