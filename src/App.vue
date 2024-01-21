@@ -117,11 +117,14 @@ if(localValue){
 <style scoped>
 
 @keyframes rotate {
-  from{
+  0%{
     rotate:0deg;
   }
-  to{
-    rotate:360deg;
+  50%{
+    rotate:25deg;
+  }
+  100%{
+    rotate:0deg;
   }
   
 }
@@ -159,11 +162,11 @@ if(localValue){
       .water{
         width: 200px;
         height: 200px;
-        border-radius: 45%;
+        border-radius: 38%;
         background-color: #0969da;
         position: absolute;
         z-index:-1 ;
-        animation: rotate 3s linear infinite;
+        animation: rotate 2s linear infinite;
       }
     }
 
