@@ -150,7 +150,7 @@ if(localValue){
       width: 175px;
       height: 175px;
       border-radius: 50%;
-      /* border:.5px solid ; */
+      border:5px dotted gray;
       display: flex;
       justify-content: center;
       align-items: center;
