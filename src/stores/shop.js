@@ -17,7 +17,7 @@ export const useShopStore =defineStore('shop',()=>{
     .then((res) => res.json())
     .then((json) => cat.value = json)
     .catch((error) => console.log('error :',error));
-    console.log(cat);
+    // console.log(cat);
 
 
     return{data,cat}

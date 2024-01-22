@@ -35,7 +35,8 @@
             <button @click="showAll">
                 All
             </button>
-            <button v-for="item of cat" :key="item.id" @click="showFilter(item.id)">
+            <button v-for="item of cat" :key="item.id" 
+                @click="showFilter(item.id)">
                 {{ item.name }}
             </button>
         </div>

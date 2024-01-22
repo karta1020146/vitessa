@@ -49,7 +49,7 @@ if(localValue){
   }
 
   const autoLoad=()=>{
-    intervalId.value =  setInterval(loadAdd, 30);
+    intervalId.value =  setInterval(loadAdd, 20);
   }
   onMounted(()=>{
     autoLoad()
