@@ -4,18 +4,18 @@
     import {storeToRefs } from 'pinia'
     import {RouterLink} from 'vue-router' 
     const store =useShopStore()
-    const {data} =storeToRefs(store)
-    const category= ref([
-        {id:1,text:"men's clothing"},
-        {id:2,text:"jewelery"},
-        {id:3,text:"electronics"},
-        {id:4,text:"women's clothing"},
-    ])
+    const {data,cat} =storeToRefs(store)
+    // const category= ref([
+    //     {id:1,text:"men's clothing"},
+    //     {id:2,text:"jewelery"},
+    //     {id:3,text:"electronics"},
+    //     {id:4,text:"women's clothing"},
+    // ])
     const toogleFilter =ref(false)
     const filterData =ref()
     const showFilter = (cat)=>{
         toogleFilter.value = true;
-        filterData.value = data.value.filter((item) => item.category === cat)
+        filterData.value = data.value.filter((item) => item.category.id === cat)
     }
     const showAll = ()=>{
         toogleFilter.value = false
@@ -35,8 +35,8 @@
             <button @click="showAll">
                 All
             </button>
-            <button v-for="item of category" :key="item.id" @click="showFilter(item.text)">
-                {{ item.text }}
+            <button v-for="item of cat" :key="item.id" @click="showFilter(item.id)">
+                {{ item.name }}
             </button>
         </div>
         <div class="container">
@@ -46,12 +46,12 @@
                         <h2>View Details</h2>
                     </div>
                     <div class="image">
-                        <img :src="item.image" alt="product_image">
+                        <img :src="item.images[0]" alt="product_image">
                     </div>
                     <div class="detail">
                         <p><span class="title">Name : </span>{{ item.title }}</p>
                         <p><span class="title">Price : </span>US$ {{ item.price }}</p>
-                        <p><span class="title">Category : </span>{{ item.category }}</p>
+                        <p><span class="title">Category : </span>{{ item.category.name }}</p>
                     </div>
                 </RouterLink>
             </div>
@@ -70,7 +70,7 @@
     justify-content: center;
     align-items: center;
     & h2{
-        font-size: 40px;
+        font-size: 2rem;
     }
 }
     .shop{
@@ -126,19 +126,19 @@
                 }
                 & .image{
                     width: 100%;
-                    background-color: #fff;
-                    height: 220px;
+                    /* background-color: #fff; */
+                    height: 270px;
                     overflow: hidden;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     overflow: hidden;
                     object-fit: contain;
-                    padding: .5%;
+                    /* padding: .5%; */
 
                     & img{
                         width: 100%;
-                        padding: 20%;
+                        /* padding: 20%; */
                         vertical-align: bottom;
                     }
                 }
