@@ -5,12 +5,13 @@
     import {RouterLink} from 'vue-router' 
     const store =useShopStore()
     const {data,cat} =storeToRefs(store)
-    // const category= ref([
-    //     {id:1,text:"men's clothing"},
-    //     {id:2,text:"jewelery"},
-    //     {id:3,text:"electronics"},
-    //     {id:4,text:"women's clothing"},
-    // ])
+    const category= ref([
+        {id:1,name:"Clothes"},
+        {id:2,name:"Electronics"},
+        {id:3,name:"Furniture"},
+        {id:4,name:"Shoes"},
+        {id:5,name:"Miscellaneous"},
+    ])
     const toogleFilter =ref(false)
     const filterData =ref()
     const showFilter = (cat)=>{
@@ -35,7 +36,7 @@
             <button @click="showAll">
                 All
             </button>
-            <button v-for="item of cat" :key="item.id" 
+            <button v-for="item of category" :key="item.id" 
                 @click="showFilter(item.id)">
                 {{ item.name }}
             </button>
