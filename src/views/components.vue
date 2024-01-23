@@ -10,11 +10,11 @@
   const toogleValue = ref(false)
 
   const slideData = ref([
-      { id: 1, url: 'https://picsum.photos/500/500?random=1' },
-      { id: 2, url: 'https://picsum.photos/500/500?random=2' },
-      { id: 3, url: 'https://picsum.photos/500/500?random=3' },
-      { id: 4, url: 'https://picsum.photos/500/500?random=4' },
-      { id: 5, url: 'https://picsum.photos/500/500?random=5' },
+      { id: 1, url: './pic/number1.jpg' },
+      { id: 2, url: './pic/number2.jpg' },
+      { id: 3, url: './pic/number3.jpg' },
+      { id: 4, url: './pic/number4.jpg' },
+      { id: 5, url: './pic/number5.jpg' },
   ])
 
   const titleValue =computed(() =>{
