@@ -258,11 +258,11 @@
                     .count{
                         display: flex;
                         h2{
-                            width: 9%;
+                            width:85px;
                             margin: 0 1% 0 0;
                         }
                         .container{
-                            width: 91%;
+                            width: 90%;
                             display: flex;
                             justify-content: space-between;
                             align-items: center;
