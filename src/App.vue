@@ -243,6 +243,9 @@ nav a {
     color: hsla(160, 100%, 37%, 1);
     transition: 0.3s;
   }
+  :deep(.data a:hover .detail){
+    background-color:rgb(153, 223, 202);
+  }
   :deep(.detail p){
     color:black;
     transition: .3s;
@@ -283,7 +286,7 @@ nav a {
     color: white;
     transition: .3s;
   }
-  :deep(.data a:hover){
+  :deep(.data a:hover .detail){
     background-color:hsla(160, 100%, 37%, 1);
   }
   .cart{
