@@ -71,6 +71,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    top: 0;
+    left: 0;
     & h2{
         font-size: 2rem;
     }
@@ -129,7 +131,7 @@
                 & .image{
                     width: 100%;
                     /* background-color: #fff; */
-                    height: 270px;
+                    /* height: 270px; */
                     overflow: hidden;
                     display: flex;
                     justify-content: center;
@@ -140,7 +142,7 @@
 
                     & img{
                         width: 100%;
-                        height: 100%;
+                        /* height: 100%; */
                         /* padding: 20%; */
                         vertical-align: bottom;
                     }

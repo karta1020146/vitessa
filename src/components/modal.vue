@@ -41,6 +41,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: rgba(0, 0, 0, 0.5);
+        z-index: 8;
         & .text{
             width: 28%;
             height: 28%;

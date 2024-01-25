@@ -6,6 +6,7 @@
     import {RouterLink} from 'vue-router' 
     import axios from 'axios'
     import modal from '../components/modal.vue'
+    import anButton from '../components/button.vue'
     import { useToogle } from "../composables/toogle";
     
     const {toogleFunction} = useToogle()
@@ -126,9 +127,12 @@
                                 <button @click="addCounts">+</button>
                             </div>
                             <div class="add">
-                                <button @click="addProductToCart(item)">
+                                <!-- <button @click="addProductToCart(item)">
                                     <img src="../assets/addCart.svg" alt="">
-                                </button>
+                                </button> -->
+                                <anButton @addClick="addProductToCart(item)">
+                                    <img src="../assets/addCart.svg" alt="">
+                                </anButton>
                             </div>
                         </div>
                     </div>
@@ -290,6 +294,9 @@
                         }
                         .add{
                             width: 50%;
+                            display: flex;
+                            justify-content: flex-end;
+                            margin: 0 3% 0 0;
                             button{
                                 cursor: pointer;
                                 border: 1px solid;
