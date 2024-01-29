@@ -12,7 +12,8 @@
 <template>
     <div class="bt">
         <span class="board"></span>
-        <span class="blur" :style="'background-color:' + injectValue " ></span>
+        <span class="blur1" :style="'background-color:' + injectValue " ></span>
+        <!-- <span class="blur2" :style="'background-color:' + injectValue " ></span> -->
         <button class="button" @click="$emit('addClick')" >
             <slot></slot>
         </button>
@@ -42,7 +43,15 @@
         position: absolute;
     }
 
-    .blur {
+    .blur1 {
+        display: block;
+        z-index: 2;
+        width: 105px;
+        height: 30px;
+        position: absolute;
+        transition: .3s;
+    }
+    .blur2 {
         display: block;
         z-index: 2;
         width: 105px;
@@ -55,12 +64,43 @@
         display: block;
     }
 
-    .bt:hover .blur {
-        animation: shiny .3s linear infinite;
-        top: -10px;
-        left: -50px;
+    .bt:hover .blur1 {
+        animation: shiny .5s linear infinite;
+        /* top: -10px;
+        left: -75px; */
     }
+    /* .bt:hover .blur2 {
+        animation: shinys .5s linear infinite;
+        top: 25px;
+        left: 75px;
+    } */
 
+    /* @keyframes shinys {
+        0% {
+            top: 25px;
+            left: 75px;
+        }
+
+        25% {
+            top: 25px;
+            left: -50px;
+        }
+
+        50% {
+            top: -10px;
+            left: -50px;
+        }
+
+        75% {
+            top: -10px;
+            left: 75px;
+        }
+
+        100% {
+            top: 25px;
+            left: 75px;
+        }
+    } */
     @keyframes shiny {
         0% {
             top: -10px;
@@ -92,8 +132,8 @@
         position: absolute;
         z-index: 1;
         display: none;
-        width: 105px;
-        height: 40px;
+        width: 106px;
+        height: 42px;
         background-color: hsla(160, 100%, 37%, 1);
         border-radius: 5px;
     }

@@ -307,6 +307,9 @@ nav a {
       background-color: red;
     }
   }
+  :deep(.darkContainer) {
+    background-color: #13CE66;
+  }
 
 }
 
