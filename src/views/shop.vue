@@ -62,6 +62,11 @@
 </template>
 
 <style scoped>
+/* *{
+    --marginRL:1%;
+    --items:5;
+    font-size: 16px;
+} */
 .blur{
     background-color: black;
     width: 100%;
@@ -78,10 +83,11 @@
     }
 }
     .shop{
+        font-size: 16px;    
         margin: 1% 0;
         & .tag{
             & button{
-                font-size: 17px;
+                font-size: 1rem;
                 margin: 1% .5%;
                 cursor: pointer;
             }
@@ -99,15 +105,18 @@
                 transition:.4s;
             }
             & .data{
-                width: 18%;
+                width: calc( 
+                    (100% - var(--items) * var(--marginRL) * 2) / var(--items) 
+                );
+                margin: var(--marginRL) ;
                 border: 2px solid black;
                 border-radius: 3px;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-                margin: 1% ;
                 text-align: left;
                 position: relative;
+                transition: .3s;
                 & .detail{
                     text-decoration: none;
                     color: black;
@@ -124,7 +133,7 @@
                         text-overflow: ellipsis;
                         font-weight: bold;
                         .title{
-                            font-size: 18px;
+                            font-size: 1.1rem;
                         }
                     }
                 }
@@ -150,4 +159,20 @@
             }
         }
     }
+
+    /* @media screen and (max-width: 1024px){
+        .shop{
+            font-size: 20px;
+        }
+        & .data{
+            --marginRL:2%;
+            --items:4;
+        }
+    }
+    @media screen and (max-width: 768px){
+        & .data{
+            --items:2;
+        }
+    } */
+
 </style>
