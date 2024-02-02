@@ -22,7 +22,7 @@ import { useToogle } from "../composables/toogle";
             list.value = list.value.filter((li) => li.id !== item.id);
             show.value  = 0;
         } 
-    } // 
+    } // 刪除食物
 
     const show = ref(0) //控制答案顯示
 

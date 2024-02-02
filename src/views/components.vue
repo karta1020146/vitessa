@@ -1,8 +1,8 @@
 <script setup>
   import { computed, ref } from "vue";
-  import {defineAsyncComponent} from 'vue'
+  // import {defineAsyncComponent} from 'vue'
   import food from "../components/food.vue";
-  const slideComp = defineAsyncComponent(() => import("slide/slide"));
+  // const slideComp = defineAsyncComponent(() => import("slide/slide"));
   import { useToogle } from "../composables/toogle";
 
   const {toogleFunction} = useToogle()
