@@ -113,7 +113,7 @@
                 border-radius: 3px;
                 display: flex;
                 flex-direction: column;
-                justify-content: space-between;
+                justify-content: flex-end;
                 text-align: left;
                 position: relative;
                 transition: .3s;
@@ -124,7 +124,6 @@
                     display: flex;
                     flex-direction: column;
                     justify-content: space-evenly;
-                    /* padding: 5%; */
 
                     & p{
                         border-bottom: 1px solid;
@@ -139,20 +138,16 @@
                 }
                 & .image{
                     width: 100%;
-                    /* background-color: #fff; */
-                    height: 270px;
+                    /* height: 270px; */
                     overflow: hidden;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     overflow: hidden;
                     object-fit: contain;
-                    /* padding: .5%; */
 
                     & img{
                         width: 100%;
-                        /* height: 100%; */
-                        /* padding: 20%; */
                         vertical-align: bottom;
                     }
                 }
