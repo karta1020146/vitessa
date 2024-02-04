@@ -140,7 +140,7 @@
                 & .image{
                     width: 100%;
                     /* background-color: #fff; */
-                    /* height: 270px; */
+                    height: 270px;
                     overflow: hidden;
                     display: flex;
                     justify-content: center;
