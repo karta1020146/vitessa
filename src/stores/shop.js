@@ -5,7 +5,7 @@ export const useShopStore =defineStore('shop',()=>{
 
     const data = ref()
     
-    fetch('https://api.escuelajs.co/api/v1/products')
+    fetch('https://fakestoreapi.com/products/')
     .then((res) => res.json())
     .then((json) => data.value = json)
     .catch((error) => console.log('error :',error));
@@ -20,5 +20,5 @@ export const useShopStore =defineStore('shop',()=>{
     // console.log(cat);
 
 
-    return{data,cat}
+    return{data}
 })

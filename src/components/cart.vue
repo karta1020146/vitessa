@@ -45,8 +45,8 @@
                         :key="items.jsItem.id"  
                         style="height: 120px;" >
                         <td >{{ index +1 }}</td>
-                        <td >
-                            <img :src="items.jsItem.vueItem.images[0]" alt=""></td>
+                        <td style="background-color: #fff;">
+                            <img :src="items.jsItem.vueItem.image" alt=""></td>
                         <td style="text-align: left; padding:0 0 0 1% ;">
                             {{ items.jsItem.vueItem.title }}
                         </td>

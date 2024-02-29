@@ -4,19 +4,18 @@
     import {storeToRefs } from 'pinia'
     import {RouterLink} from 'vue-router' 
     const store =useShopStore()
-    const {data,cat} =storeToRefs(store)
+    const {data} =storeToRefs(store)
     const category= ref([
-        {id:1,name:"Clothes"},
-        {id:2,name:"Electronics"},
-        {id:3,name:"Furniture"},
-        {id:4,name:"Shoes"},
-        {id:5,name:"Miscellaneous"},
+        {id:1,name:"men's clothing"},
+        {id:2,name:"jewelery"},
+        {id:3,name:"electronics"},
+        {id:4,name:"women's clothing"},
     ])
     const toogleFilter =ref(false)
     const filterData =ref()
     const showFilter = (cat)=>{
+        filterData.value = data.value.filter((item) => item.category === cat)
         toogleFilter.value = true;
-        filterData.value = data.value.filter((item) => item.category.id === cat)
     }
     const showAll = ()=>{
         toogleFilter.value = false
@@ -37,7 +36,7 @@
                 All
             </button>
             <button v-for="item of category" :key="item.id" 
-                @click="showFilter(item.id)">
+                @click="showFilter(item.name)">
                 {{ item.name }}
             </button>
         </div>
@@ -48,12 +47,12 @@
                         <h2>View Details</h2>
                     </div>
                     <div class="image">
-                        <img :src="item.images[0]" alt="product_image">
+                        <img :src="item.image" alt="product_image">
                     </div>
                     <div class="detail">
                         <p><span class="title">Name : </span>{{ item.title }}</p>
                         <p><span class="title">Price : </span>US$ {{ item.price }}</p>
-                        <p><span class="title">Category : </span>{{ item.category.name }}</p>
+                        <p><span class="title">Category : </span>{{ item.category }}</p>
                     </div>
                 </RouterLink>
             </div>
@@ -138,16 +137,20 @@
                 }
                 & .image{
                     width: 100%;
-                    /* height: 270px; */
+                    height:350px;
                     overflow: hidden;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    overflow: hidden;
-                    object-fit: contain;
+                    background-color: #fff;
+                    /* overflow: hidden; */
+                    /* object-fit: contain; */
 
                     & img{
                         width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                        padding: 2%;
                         vertical-align: bottom;
                     }
                 }

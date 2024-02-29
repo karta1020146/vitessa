@@ -22,7 +22,7 @@
 
     const fetchAxios = async()=>{
         try {
-            const res = await axios.get('https://api.escuelajs.co/api/v1/products'); 
+            const res = await axios.get('https://fakestoreapi.com/products/'); 
             fetchData.value = res.data;
             filterData.value = fetchData.value.filter(v => v.id == route.params.id );
         } catch (error) {
@@ -107,7 +107,7 @@
         <div class="main" v-else  v-for="item of filterData" :key="item.id">
             <div class="title" >
                 <div class="image" >
-                    <img :src="item.images[0]" alt="item_image">
+                    <img :src="item.image" alt="item_image">
                 </div>
                 <div class="price">
                     <h2>
@@ -238,16 +238,18 @@
                 border-radius:8px;
                 .image{
                     width: 25%;
+                    height: 300px;
                     border-right: 1px solid;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    /* background-color: #fff; */
+                    background-color: #fff;
                     border-top-left-radius:8px;
                     border-bottom-left-radius:8px;
                     img{
-                        /* object-fit: cover; */
+                        object-fit: contain;
                         width: 100%;
+                        height: 100%;
                         border-top-left-radius:8px;
                         border-bottom-left-radius:8px;
                         vertical-align: bottom;
